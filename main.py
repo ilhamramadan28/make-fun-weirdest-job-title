@@ -25,6 +25,9 @@ def main() -> int:
     if any(ord(ch) < 32 for ch in text):
         print("entry contains control characters", file=sys.stderr)
         return 1
+    if not any(ch.isalpha() for ch in text):
+        print("entry must contain at least one letter", file=sys.stderr)
+        return 1
     out_dir = "/output"
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "entry.txt")
